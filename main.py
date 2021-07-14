@@ -67,4 +67,10 @@ if __name__ == '__main__':
     # 54. 螺旋矩阵
     matrix = [[2, 5, 8], [4, 0, -1]]
     r = array.spiral_order(matrix=matrix)
-    print(r)
+    print("res: ", r)
+
+    # [剑指 Offer 53 - I.在排序数组中查找数字 I]
+    nums = [0]
+    target = 0
+    r = array.search(nums=nums, target=target)
+    print("res: ", r)

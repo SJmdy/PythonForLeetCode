@@ -107,3 +107,49 @@ def search_matrix(matrix: List[List[int]], target: int) -> bool:
         if v == target:
             return True
     return False
+
+
+# [剑指 Offer 53 - I. 在排序数组中查找数字 I](https://leetcode-cn.com/problems/zai-pai-xu-shu-zu-zhong-cha-zhao-shu-zi-lcof/)
+#
+# 统计一个数字在排序数组中出现的次数。
+def search(nums: List[int], target: int) -> int:
+    if len(nums) == 0:
+        return 0
+
+    left_index, right_index = -1, -1
+
+    left_cur, right_cur = 0, len(nums)
+    # 左侧
+    while left_cur < right_cur:
+        mid = (left_cur + right_cur) // 2
+        if nums[mid] == target:
+            if mid == 0 or nums[mid - 1] < target:
+                left_index = mid
+                break
+            else:
+                right_cur = mid
+        elif nums[mid] > target:
+            right_cur = mid
+        else:
+            left_cur = mid + 1
+    if left_index == -1:
+        return 0
+
+    # 右侧
+    left_cur, right_cur = 0, len(nums)
+    while left_cur < right_cur:
+        mid = (left_cur + right_cur) // 2
+        if nums[mid] == target:
+            if mid == len(nums) - 1 or nums[mid + 1] > target:
+                right_index = mid
+                break
+            else:
+                left_cur = mid + 1
+        elif nums[mid] > target:
+            right_cur = mid
+        else:
+            left_cur = mid + 1
+    if right_index == -1:
+        return 0
+
+    return right_index - left_index + 1
