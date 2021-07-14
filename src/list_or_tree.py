@@ -1,8 +1,6 @@
 # 使用链表解决的问题
 
 from src import common
-
-
 from .common import ListNode
 
 
@@ -119,3 +117,19 @@ def delete_duplicates1(head: ListNode) -> ListNode:
             cur = next
     return head
 
+
+# [剑指 Offer 24. 反转链表](https://leetcode-cn.com/problems/fan-zhuan-lian-biao-lcof/)
+#
+# 定义一个函数，输入一个链表的头节点，反转该链表并输出反转后链表的头节点。
+def reverseList(head: ListNode) -> ListNode:
+    if head is None:
+        return head
+
+    prev = None
+    current = head
+    while current is not None:
+        next = current.next
+        current.next = prev
+        prev = current
+        current = next
+    return prev
